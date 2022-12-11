@@ -1,3 +1,5 @@
+package entidad;
+
 public class Ruta {
     private String origen;
     private String destino;

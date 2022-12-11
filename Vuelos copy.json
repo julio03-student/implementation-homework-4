@@ -1,0 +1,11 @@
+[{
+	"name":"MMN",
+	"roll": 24,
+	"marks": [91, 95, 97, 97, 94],
+	"parents": {
+	"name": "IMT",
+	"mobile":"1234567890"
+	},
+	"hobbies": ["sports", "reading", "music"],
+	"others": ["A", 1]
+}]

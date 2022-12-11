@@ -3,7 +3,10 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 
+import entidad.Ruta;
 import entidad.Vuelo;
+
+import control.ControlRutas;
 
 public class ControlVuelos {
 
@@ -44,11 +47,21 @@ public class ControlVuelos {
         return vuelosB;
     }
 
-    public void crearVuelo(String origen, String destino){
-
+    public void crearVuelo(List<String> rutas){
+        ControlRutas control = new ControlRutas();
+        for(int i = 0; i < rutas.size(); i++){
+            Ruta ruta = control.buscarRuta(rutas.get(i));
+        }
     }
 
-    public Vuelo buscarVuelo()
+    public Vuelo buscarVuelo(Vuelo vueloABuscar){
+        for (Vuelo vuelo : vuelos) {
+            if(vuelo.getOrigen().equals(vueloABuscar.getOrigen()) && vuelo.getDestino().equals(vueloABuscar.getDestino()) && vuelo.getDuracion() == vueloABuscar.getDuracion() && vuelo.getPrecio() == vueloABuscar.getPrecio() && vuelo.esConEscala() == vueloABuscar.esConEscala()){
+                return vuelo;
+            }
+        }   
+        return null;
+    }
 
     
     

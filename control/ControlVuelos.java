@@ -6,8 +6,6 @@ import java.util.List;
 import entidad.Ruta;
 import entidad.Vuelo;
 
-import control.ControlRutas;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
@@ -60,7 +58,7 @@ public class ControlVuelos {
         String destino;
         double duracion;
         double precio;
-        boolean conEscala = false;
+        boolean conEscala;
 
         for (List<Ruta> rutas : rutasVuelos) {
             duracion = calcularDuracionVuelo(rutas);
@@ -72,10 +70,11 @@ public class ControlVuelos {
             }else{
                 origen = rutas.get(0).getOrigen();
                 destino = rutas.get(0).getDestino();
+                conEscala = false;
             }
             Vuelo vuelo = new Vuelo(origen,destino,precio,duracion,conEscala);
 
-            vuelo.agregarRuta(rutas);
+            vuelo.agregarRutas(rutas);
 
             listaVuelos.add(vuelo);
         }

@@ -22,7 +22,7 @@ public class CargarDatos {
 		FileReader fileReader;
         File file = new File(archivo);
         fileReader = new FileReader(file);
-        // Parser returns an object, we need an explicit cast to covert it into a JSONArray
+        
         JSONArray array = (JSONArray) parser.parse(fileReader);
 
         if(fileReader.read() == 0){
@@ -39,7 +39,6 @@ public class CargarDatos {
 
         List<List<String[]>> rutas = new ArrayList<List<String[]>>();
         
-        //Traverse the list
         for(int i=0;i<array.size();i++)
         {
             String llave = String.valueOf(i+1);

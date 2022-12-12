@@ -40,10 +40,16 @@ public class Vuelo{
         return conEscala;
     }
 
-    public void agregarRuta(List<Ruta> rutas){
+    public void agregarRutas(List<Ruta> rutas){
         for (Ruta ruta : rutas) {
             listaRutas.add(ruta);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Vuelo [origen=" + origen + ", destino=" + destino + ", precio=" + precio + ", duracion=" + duracion
+                + ", conEscala=" + conEscala + "]";
     }
 
 }

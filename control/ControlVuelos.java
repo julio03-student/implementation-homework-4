@@ -13,18 +13,19 @@ import org.json.simple.parser.ParseException;
 public class ControlVuelos {
 
     private List<Vuelo> listaVuelos;
-    ControlRutas control = new ControlRutas();
+    ControlRutas control;
 
     public ControlVuelos() {
         this.listaVuelos = new ArrayList<Vuelo>();
+        this.control = new ControlRutas();
     }
 
     /**
-     * Método en el cual retornará todos aquellos velos que 
-     * cumplan con el origen y el destino ingresado
+     * Método en el cual retornará todos aquellos Vuelos que 
+     * cumplan con el origen y el destino ingresado.
      * 
-     * @param origen
-     * @param destino
+     * @param origen, ciduad de Origen del Vuelo
+     * @param destino, ciduad de Destino del Vuelo
      * @return Lista de vuelos encontrados
      * @throws VueloException
      * 
@@ -49,6 +50,15 @@ public class ControlVuelos {
 
         return vuelosB;
     }
+
+    /**
+     * Después de le lectura del archivo, se procederá a la creación de cada Vuelo, con sus respectivas Rutas.
+     * 
+     * @param rutaArchivo ruta del archivo donde se tiene las Rutas a cargar
+     * @throws FileNotFoundException
+     * @throws ParseException
+     * @throws IOException
+     */
 
     public void crearVuelos(String rutaArchivo) throws FileNotFoundException, ParseException, IOException{
         
@@ -80,14 +90,12 @@ public class ControlVuelos {
         }
     }
 
-    public Vuelo buscarVuelo(Vuelo vueloABuscar){
-        for (Vuelo vuelo : listaVuelos) {
-            if(vuelo.getOrigen().equals(vueloABuscar.getOrigen()) && vuelo.getDestino().equals(vueloABuscar.getDestino()) && vuelo.getDuracion() == vueloABuscar.getDuracion() && vuelo.getPrecio() == vueloABuscar.getPrecio() && vuelo.esConEscala() == vueloABuscar.esConEscala()){
-                return vuelo;
-            }
-        }   
-        return null;
-    }
+    /**
+     * Dada una lista de rutas, se procederá a retornar el precio total del Vuelo (sea con escala o sin escala).
+     * 
+     * @param List<Ruta> rutas, lista de rutas del Vuelo referenciado
+     * @return precio total del Vuelo
+     */
 
     public double calcularPrecioVuelo(List<Ruta> rutas){
         double precio = 0;
@@ -96,6 +104,13 @@ public class ControlVuelos {
          }
          return precio;
     }
+
+    /**
+     * Dada una lista de rutas, se procederá a retornar el duración total del Vuelo (sea con escala o sin escala).
+     * 
+     * @param List<Ruta> rutas, lista de rutas del Vuelo referenciado
+     * @return duración total del Vuelo
+     */
 
     public double calcularDuracionVuelo(List<Ruta> rutas){
         double duracion = 0;

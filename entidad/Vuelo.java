@@ -40,6 +40,12 @@ public class Vuelo{
         return conEscala;
     }
 
+    /**
+     * Permite agregar la rutas para el vuelo referenciado
+     * 
+     * @param rutas
+     */
+
     public void agregarRutas(List<Ruta> rutas){
         for (Ruta ruta : rutas) {
             listaRutas.add(ruta);

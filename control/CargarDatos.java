@@ -20,9 +20,10 @@ public class CargarDatos {
     }
 
     /**
-     * Este método se encarga de realizar del procesamiento de las rutas y su correcto procesamiento.
+     * Este método se encarga de realizar del procesamiento de las rutas, guardando en una sublista 
+     * la o las rutas que corresponden a cada Vuelo.
      * 
-     * @return Lista de listas de arreglos de String
+     * @return Lista de listas de arreglos de String (List<List<String[]>>)
      * @throws FileNotFoundException
      * @throws ParseException
      * @throws IOException

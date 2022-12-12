@@ -17,6 +17,7 @@ public class ControlRutas {
     }
 
     /**
+     * Realiza la carga inicial de las rutas haciendo la creación de Vuelos y Rutas que corresponden a los mimsmos.
      * 
      * @param ruta
      * @return
@@ -26,9 +27,9 @@ public class ControlRutas {
      */
 
     public List<List<Ruta>> cargarDatosIniciales(String ruta) throws FileNotFoundException, IOException, ParseException{
+
         CargarDatos datos = new CargarDatos(ruta);
         List<List<String[]>> rutasCargadas = datos.cargarDatos();
-
         List<List<Ruta>> rutasVuelos = new ArrayList<List<Ruta>>();
         
         for (List<String[]> rutas : rutasCargadas) {
@@ -43,17 +44,5 @@ public class ControlRutas {
 
         return rutasVuelos;
     }
-
-    public Ruta buscarRuta(Ruta rutaABuscar){
-        for (Ruta ruta : listaRutas) {
-            if(ruta.getOrigen().equals(rutaABuscar.getOrigen()) && ruta.getDestino().equals(rutaABuscar.getDestino()) && ruta.getDuracion() == rutaABuscar.getDuracion() && ruta.getPrecio() == rutaABuscar.getPrecio()){
-                return ruta;
-            }
-        }
-        return null;
-    }
-
-
-
-    
+   
 }

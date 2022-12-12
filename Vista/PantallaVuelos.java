@@ -1,40 +1,26 @@
-//
-
-// import java.util.List;
-
-// import control.CargarDatos;
-
-// public class PantallaVuelos {
-//     public static void main(String[] args) {
-//         CargarDatos cargador = new CargarDatos();
-
-//         List<String[]> datos = cargador.cargarDatos("Vuelos.json");
-//     }
-// }
-
 package Vista;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import org.json.simple.parser.ParseException;
 
 import control.ControlVuelos;
-import entidad.Ruta;
 
 
 public class PantallaVuelos {
-	public static void main(String [] args)
+
+    public static void main(String [] args)
 	{
+        inicio();
+	}
+
+    public static void inicio(){
+        String rutaArchivo = "Datos/Vuelos.json";
+        ControlVuelos controlVuelos = new ControlVuelos();
+
 		try{
             
-            System.out.println("Hola");
+            controlVuelos.crearVuelos(rutaArchivo);
 		}
 
 		catch(FileNotFoundException e)
@@ -49,5 +35,6 @@ public class PantallaVuelos {
 		{
 			System.out.println(e.getStackTrace()+ " :IOException");
 		}
-	}
+    }
+    
 }

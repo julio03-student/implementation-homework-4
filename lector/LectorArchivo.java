@@ -19,6 +19,7 @@ public class LectorArchivo {
     }
 
     /**
+     * Método que se encarga de convertir el archivo .json en una lista de objetos
      * 
      * @return JSONArray del procesamiento del archivo
      * @throws FileNotFoundException

@@ -17,10 +17,10 @@ public class ControlRutas {
     }
 
     /**
-     * Realiza la carga inicial de las rutas haciendo la creación de Vuelos y Rutas que corresponden a los mimsmos.
+     * Realiza la carga inicial de las rutas y retorna una lista de listas de rutas para cada vuelo.
      * 
      * @param ruta
-     * @return
+     * @return Lista de listas de rutas. List<List<Ruta>>
      * @throws FileNotFoundException
      * @throws IOException
      * @throws ParseException

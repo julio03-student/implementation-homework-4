@@ -21,7 +21,7 @@ public class ControlVuelos {
     }
 
     /**
-     * Método en el cual retornará todos aquellos Vuelos que 
+     * Método en el cual se retornarán todos aquellos Vuelos que 
      * cumplan con el origen y el destino ingresado.
      * 
      * @param origen, ciduad de Origen del Vuelo
@@ -31,24 +31,30 @@ public class ControlVuelos {
      * 
      */
 
-    public List<Vuelo> mostrarVuelosDisponibles(String origen, String destino) throws VueloException{
+    public List<Vuelo> mostrarVuelosPosibles(String origen, String destino) throws VueloException{
         if(origen == "" && destino == ""){
             throw new VueloException("Los datos ingresados no son válidos");
         }
 
-        List<Vuelo> vuelosB = new ArrayList<Vuelo>();
+        List<Vuelo> vuelosPosibles = buscarVuelos(origen,destino);
 
-        for (Vuelo vuelo : listaVuelos) {
-            if(vuelo.getOrigen().equals(origen) && vuelo.getDestino().equals(destino)){
-                vuelosB.add(vuelo);
-            }
-        }
-
-        if(vuelosB.size() == 0){
+        if(vuelosPosibles.size() == 0){
             throw new VueloException("No se encontraron vuelos con estas características");
         }
 
-        return vuelosB;
+        return vuelosPosibles;
+    }
+
+    public List<Vuelo> buscarVuelos(String origen, String destino){
+        List<Vuelo> vuelos = new ArrayList<Vuelo>();
+
+        for (Vuelo vuelo : listaVuelos) {
+            if(vuelo.getOrigen().equals(origen) && vuelo.getDestino().equals(destino)){
+                vuelos.add(vuelo);
+            }
+        }
+
+        return vuelos;
     }
 
     /**
@@ -60,8 +66,10 @@ public class ControlVuelos {
      * @throws IOException
      */
 
-    public void crearVuelos(String rutaArchivo) throws FileNotFoundException, ParseException, IOException{
-        
+    public void crearVuelos(String rutaArchivo) throws FileNotFoundException, ParseException, IOException, VueloException{
+        if(rutaArchivo == ""){
+            throw new FileNotFoundException("Por favor ingrese una ruta válida");
+        }
         List<List<Ruta>> rutasVuelos = control.cargarDatosIniciales(rutaArchivo);
 
         String origen;
@@ -71,6 +79,9 @@ public class ControlVuelos {
         boolean conEscala;
 
         for (List<Ruta> rutas : rutasVuelos) {
+            if(rutas.size()>2){
+                throw new VueloException("Se ha excedido el número de escalas permitidas");
+            }
             duracion = calcularDuracionVuelo(rutas);
             precio = calcularPrecioVuelo(rutas);
             if(rutas.size() == 2){
@@ -103,6 +114,10 @@ public class ControlVuelos {
             precio += ruta.getPrecio();
          }
          return precio;
+    }
+
+    public int totalVuelos(){
+        return listaVuelos.size();
     }
 
     /**

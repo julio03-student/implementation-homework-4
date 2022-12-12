@@ -16,13 +16,13 @@ public class PantallaVuelos {
 	{
         inicio();
 	}
-
+	
 	/**
 	 * Metodo de inicialización de carga de Rutas y Vuelos respectivamente.
 	 */
 
     public static void inicio(){
-        String rutaArchivo = "datos/Vuelos.json";
+        String rutaArchivo = "datos/vuelos.json";
         ControlVuelos controlVuelos = new ControlVuelos();
 
         System.out.println("Bienvenido a Randy's Airlines Colombia SA");
@@ -39,7 +39,7 @@ public class PantallaVuelos {
         System.out.println("Vuelos posibles: ");
 		try{
             controlVuelos.crearVuelos(rutaArchivo);
-            for (Vuelo vuelo : controlVuelos.mostrarVuelosDisponibles(origen, destino)) {
+            for (Vuelo vuelo : controlVuelos.mostrarVuelosPosibles(origen, destino)) {
                 System.out.println(vuelo);
             }
 		}

@@ -4,9 +4,9 @@
     {"3":[{"origen":"Manizales","destino":"Barranquilla","duracion":1.5,"precio":96000.0}]},
     {"4":[{"origen":"Medellin","destino":"Bucaramanga","duracion":2,"precio":130000.0}]},
     {"5":[{"origen":"Pasto","destino":"Pereira","duracion":1.5,"precio":120000.0},{"origen":"Pereira","destino":"Cartagena","duracion":3.5,"precio":300000.0}]},
-    {"6":[{"origen":"Manizales","destino":"Bogota","duracion":2,"precio":100000.0},{"origen":"Bogota","destino":"Barranquilla","duracion":3.5,"precio":290000.0}]},
-    {"7":[{"origen":"Medellin","destino":"Pereira","duracion":0.5,"precio":60000.0},{"origen":"Pereira","destino":"Bucaramanga","duracion": 2.5,"precio":210000.0}]},
-    {"8":[{"origen":"Manizales","destino":"Barranquilla","duracion":1.5,"precio":96000.0}]},
-    {"9":[{"origen":"Medellin","destino":"Bucaramanga","duracion":2,"precio":130000.0}]},
-    {"10":[{"origen":"Pasto","destino":"Pereira","duracion":1.5,"precio":120000.0},{"origen":"Pereira","destino":"Cartagena","duracion":3.5,"precio":300000.0}]}
+    {"6":[{"origen":"Pereira","destino":"Bogota","duracion":1,"precio":85000.0},{"origen":"Bogota","destino":"Cali","duracion":5,"precio":300000.0}]},
+    {"7":[{"origen":"Medellin","destino":"Pereira","duracion":5,"precio":170000.0},{"origen":"Pereira","destino":"Cartagena","duracion": 7.5,"precio":285000.0}]},
+    {"8":[{"origen":"Pasto","destino":"Barranquilla","duracion":9,"precio":250000.0}]},
+    {"9":[{"origen":"Medellin","destino":"Cartagena","duracion":2,"precio":150000.0}]},
+    {"10":[{"origen":"Valledupar","destino":"Manizales","duracion":4,"precio":120000.0},{"origen":"Manizales","destino":"Cartago","duracion":3.5,"precio":150000.0}]}
 ]

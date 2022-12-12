@@ -1,41 +1,37 @@
 package control;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import lector.LectorArchivo;
 
 public class CargarDatos {
 
-    public CargarDatos() {
+    private LectorArchivo lectorArchivo;
+
+    public CargarDatos(String nombreArchivo) {
+        this.lectorArchivo = new LectorArchivo(nombreArchivo);
     }
+
+    /**
+     * Este método se encarga de realizar del procesamiento de las rutas y su correcto procesamiento.
+     * 
+     * @return Lista de listas de arreglos de String
+     * @throws FileNotFoundException
+     * @throws ParseException
+     * @throws IOException
+     */
     
-    public List<List<String[]>> cargarDatos(String archivo) throws FileNotFoundException, ParseException, IOException{
-        JSONParser parser = new JSONParser();
-		FileReader fileReader;
-        File file = new File(archivo);
-        fileReader = new FileReader(file);
+    public List<List<String[]>> cargarDatos() throws FileNotFoundException, ParseException, IOException{
         
-        JSONArray array = (JSONArray) parser.parse(fileReader);
-
-        if(fileReader.read() == 0){
-            throw new IOException("El archivo está vacío");
-        }
-
-        if(array.isEmpty()){
-            throw new ParseException(202, "El formato del archivo es inválido");
-        }
-
-        if(!file.exists()){
-            throw new FileNotFoundException("No se encontró el archivo");
-        }
+        
+        JSONArray array = lectorArchivo.obtenerDatos();
 
         List<List<String[]>> rutas = new ArrayList<List<String[]>>();
         
@@ -57,10 +53,10 @@ public class CargarDatos {
                 rutaB.add(j, rutaC);
             }
             
-
             rutas.add(i,rutaB);
             
         }
+
         return rutas;
     }
 

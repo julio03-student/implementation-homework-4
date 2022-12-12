@@ -16,9 +16,18 @@ public class ControlRutas {
         this.listaRutas = new ArrayList<Ruta>();
     }
 
+    /**
+     * 
+     * @param ruta
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ParseException
+     */
+
     public List<List<Ruta>> cargarDatosIniciales(String ruta) throws FileNotFoundException, IOException, ParseException{
-        CargarDatos datos = new CargarDatos();
-        List<List<String[]>> rutasCargadas = datos.cargarDatos(ruta);
+        CargarDatos datos = new CargarDatos(ruta);
+        List<List<String[]>> rutasCargadas = datos.cargarDatos();
 
         List<List<Ruta>> rutasVuelos = new ArrayList<List<Ruta>>();
         

@@ -3,7 +3,6 @@ package vista;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
-
 import org.json.simple.parser.ParseException;
 
 import control.ControlVuelos;
@@ -18,8 +17,12 @@ public class PantallaVuelos {
         inicio();
 	}
 
+	/**
+	 * Metodo de inicialización de carga de Rutas y Vuelos respectivamente.
+	 */
+
     public static void inicio(){
-        String rutaArchivo = "Datos/Vuelos.json";
+        String rutaArchivo = "datos/Vuelos.json";
         ControlVuelos controlVuelos = new ControlVuelos();
 
         System.out.println("Bienvenido a Randy's Airlines Colombia SA");

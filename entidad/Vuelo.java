@@ -9,7 +9,7 @@ public class Vuelo{
     private double precio;
     private double duracion;
     private boolean conEscala;
-    private List<Ruta> rutas;
+    private List<Ruta> listaRutas;
     
     public Vuelo(String origen, String destino, double precio, double duracion, boolean conEscala) {
         this.origen = origen;
@@ -17,7 +17,7 @@ public class Vuelo{
         this.precio = precio;
         this.duracion = duracion;
         this.conEscala = conEscala;
-        this.rutas = new ArrayList<Ruta>(); 
+        this.listaRutas = new ArrayList<Ruta>(); 
     }
 
     public String getOrigen() {
@@ -40,12 +40,10 @@ public class Vuelo{
         return conEscala;
     }
 
-    public List<Ruta> getRutas() {
-        return rutas;
-    }
-
-    public void agregarRuta(Ruta ruta){
-        rutas.add(ruta);
+    public void agregarRuta(List<Ruta> rutas){
+        for (Ruta ruta : rutas) {
+            listaRutas.add(ruta);
+        }
     }
 
 }

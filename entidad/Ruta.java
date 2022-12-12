@@ -25,4 +25,10 @@ public class Ruta {
     public double getDuracion() {
         return duracion;
     }
+
+    @Override
+    public String toString() {
+        return "Ruta [origen=" + origen + ", destino=" + destino + ", precio=" + precio + ", duracion=" + duracion
+                + "]";
+    }
 }

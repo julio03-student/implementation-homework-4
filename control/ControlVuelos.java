@@ -8,12 +8,17 @@ import entidad.Vuelo;
 
 import control.ControlRutas;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import org.json.simple.parser.ParseException;
+
 public class ControlVuelos {
 
-    private List<Vuelo> vuelos;
+    private List<Vuelo> listaVuelos;
+    ControlRutas control = new ControlRutas();
 
     public ControlVuelos() {
-        this.vuelos = new ArrayList<Vuelo>();
+        this.listaVuelos = new ArrayList<Vuelo>();
     }
 
     /**
@@ -34,7 +39,7 @@ public class ControlVuelos {
 
         List<Vuelo> vuelosB = new ArrayList<Vuelo>();
 
-        for (Vuelo vuelo : vuelos) {
+        for (Vuelo vuelo : listaVuelos) {
             if(vuelo.getOrigen().equals(origen) && vuelo.getDestino().equals(destino)){
                 vuelosB.add(vuelo);
             }
@@ -47,15 +52,37 @@ public class ControlVuelos {
         return vuelosB;
     }
 
-    public void crearVuelo(List<String> rutas){
-        ControlRutas control = new ControlRutas();
-        for(int i = 0; i < rutas.size(); i++){
-            Ruta ruta = control.buscarRuta(rutas.get(i));
+    public void crearVuelos(String rutaArchivo) throws FileNotFoundException, ParseException, IOException{
+        
+        List<List<Ruta>> rutasVuelos = control.cargarDatosIniciales(rutaArchivo);
+
+        String origen;
+        String destino;
+        double duracion;
+        double precio;
+        boolean conEscala = false;
+
+        for (List<Ruta> rutas : rutasVuelos) {
+            duracion = calcularDuracionVuelo(rutas);
+            precio = calcularPrecioVuelo(rutas);
+            if(rutas.size() == 2){
+                origen = rutas.get(0).getOrigen();
+                destino = rutas.get(1).getDestino();
+                conEscala = true;
+            }else{
+                origen = rutas.get(0).getOrigen();
+                destino = rutas.get(0).getDestino();
+            }
+            Vuelo vuelo = new Vuelo(origen,destino,precio,duracion,conEscala);
+
+            vuelo.agregarRuta(rutas);
+
+            listaVuelos.add(vuelo);
         }
     }
 
     public Vuelo buscarVuelo(Vuelo vueloABuscar){
-        for (Vuelo vuelo : vuelos) {
+        for (Vuelo vuelo : listaVuelos) {
             if(vuelo.getOrigen().equals(vueloABuscar.getOrigen()) && vuelo.getDestino().equals(vueloABuscar.getDestino()) && vuelo.getDuracion() == vueloABuscar.getDuracion() && vuelo.getPrecio() == vueloABuscar.getPrecio() && vuelo.esConEscala() == vueloABuscar.esConEscala()){
                 return vuelo;
             }
@@ -63,6 +90,21 @@ public class ControlVuelos {
         return null;
     }
 
+    public double calcularPrecioVuelo(List<Ruta> rutas){
+        double precio = 0;
+         for (Ruta ruta : rutas) {
+            precio += ruta.getPrecio();
+         }
+         return precio;
+    }
+
+    public double calcularDuracionVuelo(List<Ruta> rutas){
+        double duracion = 0;
+         for (Ruta ruta : rutas) {
+            duracion += ruta.getDuracion();
+         }
+         return duracion;
+    }
     
     
 }
